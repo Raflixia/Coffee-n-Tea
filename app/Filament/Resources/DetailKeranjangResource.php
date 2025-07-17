@@ -26,12 +26,16 @@ class DetailKeranjangResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('keranjang_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('keranjang_id')
+                    ->relationship('keranjang', 'user_id')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                     Select::make('produk_id')
                     ->label('Produk')
                     ->relationship('produk', 'nama')
+                    ->searchable()
+                    ->preload()
                     ->required()
                     ->reactive()
                     ->afterStateUpdated(function (callable $set, $state) {

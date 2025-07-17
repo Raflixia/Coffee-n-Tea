@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TransaksiResource\Pages;
-use App\Filament\Resources\TransaksiResource\RelationManagers;
-use App\Models\Transaksi;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Transaksi;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\TransaksiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TransaksiResource\RelationManagers;
 
 class TransaksiResource extends Resource
 {
@@ -23,9 +25,11 @@ class TransaksiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('user_id')
+                ->relationship('user', 'name')
+                ->searchable()
+                ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('total_harga')
                     ->required()
                     ->numeric(),
@@ -34,7 +38,7 @@ class TransaksiResource extends Resource
                     ->maxLength(50),
                 Forms\Components\TextInput::make('status_pembayaran')
                     ->required(),
-                Forms\Components\DateTimePicker::make('tanggal_transaksi')
+                    DatePicker::make('tanggal_transaksi')
                     ->required(),
                 Forms\Components\Textarea::make('alamat_pengiriman')
                     ->required()
@@ -63,7 +67,7 @@ class TransaksiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_harga')
@@ -73,7 +77,7 @@ class TransaksiResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status_pembayaran'),
                 Tables\Columns\TextColumn::make('tanggal_transaksi')
-                    ->dateTime()
+                ->dateTime("d-M-Y")
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ongkir')
                     ->numeric()
@@ -87,7 +91,7 @@ class TransaksiResource extends Resource
                 Tables\Columns\TextColumn::make('kurir')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime("d-M-Y")
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')

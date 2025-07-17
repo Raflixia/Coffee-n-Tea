@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('harga');
             $table->integer('stok');
+            $table->decimal('berat', 12, 2);
             $table->string('deskripsi');
             $table->string('thumbnail');
             $table->bigInteger('kategori_id')->constrained('kategoris');

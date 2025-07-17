@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DetailTransaksiResource\Pages;
-use App\Filament\Resources\DetailTransaksiResource\RelationManagers;
-use App\Models\DetailTransaksi;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\DetailTransaksi;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\DetailTransaksiResource\Pages;
+use App\Filament\Resources\DetailTransaksiResource\RelationManagers;
 
 class DetailTransaksiResource extends Resource
 {
@@ -23,12 +24,16 @@ class DetailTransaksiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('transaksi_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('produk_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('transaksi_id')
+                    ->relationship('transaksi', 'user_id')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                Select::make('produk_id')
+                    ->relationship('produk', 'nama')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('jumlah')
                     ->required()
                     ->numeric(),
@@ -42,10 +47,10 @@ class DetailTransaksiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('transaksi_id')
+                Tables\Columns\TextColumn::make('transaksi.user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('produk_id')
+                Tables\Columns\TextColumn::make('produk.nama')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jumlah')

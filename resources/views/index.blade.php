@@ -217,11 +217,9 @@
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold mb-8">Our Products</h2>
         <div class="flex flex-wrap gap-2 mb-8">
-          <button class="px-4 py-2 rounded bg-amber-600 text-white font-semibold">Food & Drinks</button>
-          <button class="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold">Vegetables</button>
-          <button class="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold">Dried Foods</button>
-          <button class="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold">Bread & Cake</button>
-          <button class="px-4 py-2 rounded bg-gray-200 text-gray-700 font-semibold">Fish & Meat</button>
+            @foreach ($kategori as $item)
+            <button class="px-4 py-2 rounded bg-amber-600 text-white font-semibold">{{ $item->nama_kategori}}</button>
+            @endforeach
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <!-- Repeat for each product -->

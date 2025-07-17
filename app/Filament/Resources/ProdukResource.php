@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProdukResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProdukResource\RelationManagers;
+use Filament\Tables\Columns\ImageColumn;
 
 class ProdukResource extends Resource
 {
@@ -35,12 +36,16 @@ class ProdukResource extends Resource
                 Forms\Components\TextInput::make('stok')
                     ->required()
                     ->numeric(),
+                Forms\Components\TextInput::make('berat')
+                    ->required()
+                    ->numeric(),
                 Forms\Components\TextInput::make('deskripsi')
                     ->required()
                     ->maxLength(255),
                 FileUpload::make('thumbnail'),
                 Select::make('kategori_id')
                 ->relationship('kategori', 'nama_kategori')
+                ->searchable()
                 ->preload()
                     ->required(),
             ]);
@@ -57,11 +62,13 @@ class ProdukResource extends Resource
                 Tables\Columns\TextColumn::make('stok')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('berat')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('thumbnail')
+                ImageColumn::make('thumbnail')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kategori_id')
+                Tables\Columns\TextColumn::make('kategori.nama_kategori')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
