@@ -58,14 +58,14 @@
         </svg>
       </button>
       <nav class="hidden md:flex space-x-6 items-center" id="nav-menu">
-        <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Home</a>
+        <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Dashboard</a>
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">About</a>
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Shop</a>
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">News</a>
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Pages</a>
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Contact</a>
         <div class="flex space-x-4 ml-4">
-          <a href="#" class="text-gray-500 hover:text-amber-600"><ion-icon name="person-outline"></ion-icon></a>
+          <a href="{{ route('login') }}" class="text-gray-500 hover:text-amber-600"><ion-icon name="person-outline"></ion-icon></a>
           <a href="#" class="text-gray-500 hover:text-amber-600"><ion-icon name="heart-outline"></ion-icon></a>
           <a href="#" class="text-gray-500 hover:text-amber-600"><ion-icon name="cart-outline"></ion-icon></a>
         </div>
@@ -74,7 +74,7 @@
     <!-- Mobile menu -->
     <div class="md:hidden" id="nav-mobile" style="display:none;">
       <div class="px-4 pb-4 space-y-2 bg-white shadow">
-        <a href="#" class="block text-gray-700 hover:text-amber-600 font-semibold">Home</a>
+        <a href="#" class="block text-gray-700 hover:text-amber-600 font-semibold">Dashboard</a>
         <a href="#" class="block text-gray-700 hover:text-amber-600 font-semibold">About</a>
         <a href="#" class="block text-gray-700 hover:text-amber-600 font-semibold">Shop</a>
         <a href="#" class="block text-gray-700 hover:text-amber-600 font-semibold">News</a>
@@ -217,33 +217,12 @@
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold mb-8">Our Products</h2>
         <div class="flex flex-wrap gap-2 mb-8">
-            @foreach ($kategori as $item)
-            <button class="px-4 py-2 rounded bg-amber-600 text-white font-semibold">{{ $item->nama_kategori}}</button>
-            @endforeach
+            <button class="px-4 py-2 rounded bg-amber-600 text-white font-semibold">kopi</button>
+
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <!-- Repeat for each product -->
-          <div class="bg-white rounded-lg shadow p-4 flex flex-col">
-            <img src="./assets/images/product-1.png" class="h-48 w-full object-contain mb-4" alt="product">
-            <div class="flex items-center mb-2">
-              <span class="bg-amber-100 text-amber-600 text-xs px-2 py-1 rounded mr-2">-19%</span>
-              <div class="flex text-amber-400 text-sm">
-                <ion-icon name="star"></ion-icon>
-                <ion-icon name="star"></ion-icon>
-                <ion-icon name="star"></ion-icon>
-                <ion-icon name="star"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-              </div>
-              <span class="ml-2 text-xs text-gray-500">(24)</span>
-            </div>
-            <h4 class="font-bold mb-1">Carrots Group Scal</h4>
-            <div class="flex items-center space-x-2">
-              <span class="text-lg font-bold text-amber-600">$32.00</span>
-              <span class="line-through text-gray-400">$46.00</span>
-            </div>
-          </div>
+            <livewire:produk />
           <!-- Tambahkan produk lain dengan pola di atas -->
-        </div>
       </div>
     </section>
 

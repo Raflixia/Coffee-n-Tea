@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'CnT@google.com',
             'password' => hash('sha256','root'),
         ]);
+        $this->call([
+            ProdukTableSeeder::class,
+        ]);
     }
 }

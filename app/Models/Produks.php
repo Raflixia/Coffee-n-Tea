@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class produk extends Model
+class Produks extends Model
 {
     protected $fillable = ['nama', 'harga', 'stok','berat', 'deskripsi', 'thumbnail', 'kategori_id'];
 
@@ -21,6 +21,4 @@ class produk extends Model
     {
         return $this->hasMany(Detailkeranjang::class);
     }
-
-
 }
