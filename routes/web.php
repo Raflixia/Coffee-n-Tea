@@ -3,13 +3,14 @@
 use App\Livewire\Shop;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Keranjang;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/shop', [Shop::class, 'render'])->name('shop');
-Route::get('/keranjang', [Shop::class, 'render'])->name('keranjang');
+Route::get('/shop', shop::class)->name('shop');
+Route::get('/keranjang', Keranjang::class)->name('keranjang');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

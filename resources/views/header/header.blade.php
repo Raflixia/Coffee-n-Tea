@@ -1,22 +1,6 @@
 <!-- filepath: c:\xampp\htdocs\Coffe-n-Tea\resources\views\index.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Broccoli - Organic Food website</title>
-  <meta name="title" content="Broccoli - Organic Food website">
-  <meta name="description" content="this is Ecommerce Html Template made by DuoDevs">
-  <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
-  <!-- TAILWIND CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
-</head>
-<body id="back-to-top" class="bg-gray-50 font-sans">
+
+
 
   <!-- Topbar -->
   <div class="bg-amber-600 text-white text-sm">
@@ -66,8 +50,7 @@
         <a href="#" class="text-gray-700 hover:text-amber-600 font-semibold">Contact</a>
         <div class="flex space-x-4 ml-4">
           <a href="{{ route('login') }}" class="text-gray-500 hover:text-amber-600"><ion-icon name="person-outline"></ion-icon></a>
-          <a href="#" class="text-gray-500 hover:text-amber-600"><ion-icon name="heart-outline"></ion-icon></a>
-          <a href="#" class="text-gray-500 hover:text-amber-600"><ion-icon name="cart-outline"></ion-icon></a>
+          <a href="{{ route('keranjang') }}" class="text-gray-500 hover:text-amber-600"><ion-icon name="cart-outline"></ion-icon></a>
         </div>
       </nav>
     </div>
