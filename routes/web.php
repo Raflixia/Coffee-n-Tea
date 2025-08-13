@@ -1,9 +1,9 @@
 <?php
 
 use App\Livewire\Shop;
+use App\Livewire\Keranjang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Keranjang;
 
 Route::get('/', function () {
     return view('welcome');

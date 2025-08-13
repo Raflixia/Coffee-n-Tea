@@ -18,6 +18,8 @@
 
   <!-- Tailwind CDN (pastikan digunakan hanya untuk prototyping, bukan produksi) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   @vite(['resources/css/app.css'])
 
 
@@ -26,7 +28,7 @@
 
 <body id="back-to-top" class="bg-gray-50 font-sans">
 
-  @include('header.header')
+    @include('header.header')
 
   <main>
     {{ $slot }}
@@ -34,5 +36,6 @@
   @include('footer.footer')
 
   @livewireScripts
+  @include('sweetalert::alert')
 </body>
 </html>
