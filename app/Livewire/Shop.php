@@ -42,7 +42,7 @@ class Shop extends Component
                     'keranjang_id' => Auth::id(), // Di sini asumsikan keranjang_id adalah user_id
                     'produk_id'    => $produk->id,
                     'jumlah'       => 1,
-                    'harga'        => $produk->harga, // Tambahkan harga saat membuat
+                    'subtotal'        => $produk->harga, // Tambahkan harga saat membuat
                 ]);
             }
 

@@ -135,18 +135,32 @@ class Keranjang extends Component
             return;
         }
 
-        $items = Detailkeranjang::with('produk')->whereIn('id', $this->SelectProduk)->get()->map(function($detail) {
-            return [
-                'id'          => $detail->id,
-                'produk_id'   => $detail->produk_id,
-                'nama_produk' => $detail->produk->nama ?? 'N/A',
-                'harga'       => $detail->produk->harga,
-                'jumlah'      =>  $detail->jumlah,
-                'subtotal'    => $detail->jumlah * $detail->produk->harga
+        $selectedDetails = Detailkeranjang::with('produk')->whereIn('id', $this->SelectProduk)->get();
+        $checkoutItems = [];
+        $totalHargaTransaksi = 0;
+
+        foreach ($selectedDetails as $detail) {
+            // Hitung subtotal untuk setiap item
+            $subtotal = $detail->jumlah * $detail->produk->harga;
+            
+            // Tambahkan subtotal ke total harga transaksi
+            $totalHargaTransaksi += $subtotal;
+
+            // Tambahkan item ke array checkout
+            $checkoutItems[] = [
+                'id'            => $detail->id,
+                'produk_id'     => $detail->produk_id,
+                'nama_produk'   => $detail->produk->nama ?? 'Nama Tidak Diketahui',
+                'harga_satuan'  => $detail->produk->harga,
+                'jumlah'        => $detail->jumlah,
+                'subtotal'      => $subtotal,
             ];
-        })->toArray();
-        dd($items);
-        session(['checkout_items' => $items]);
+        }
+        $totalHargaTransaksi += $this->biaya_pengiriman;
+        dd([$checkoutItems,$totalHargaTransaksi]);
+        // Simpan data detail checkout dan total harga ke dalam session
+        session(['checkout_items' => $checkoutItems]);
+        session(['total_transaksi' => $totalHargaTransaksi]);
         return redirect()->route('shop'); // Ganti dengan route checkout Anda
     }
 
